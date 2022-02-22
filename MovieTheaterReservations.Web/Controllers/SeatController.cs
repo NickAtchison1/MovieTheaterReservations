@@ -1,75 +1,77 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using MovieTheaterReservations.DisplayModels.Auditorium;
-using MovieTheaterReservations.Services.Services.AuditoriumService;
+using MovieTheaterReservations.DisplayModels.Seat;
+using MovieTheaterReservations.Services.Services.SeatService;
 using System.Security.Claims;
 
 namespace MovieTheaterReservations.Web.Controllers
 {
     [Authorize]
-    public class AuditoriumController : Controller
+    public class SeatController : Controller
     {
-        private readonly IAuditoriumService _auditoriumService;
+        private readonly ISeatService _seatService;
         private readonly UserManager<IdentityUser> _userManager;
-        
-        public AuditoriumController(IAuditoriumService auditoriumService, UserManager<IdentityUser> userManager)
+
+        public SeatController(ISeatService seatService, UserManager<IdentityUser> userManager)
         {
-            _auditoriumService = auditoriumService;
+            _seatService = seatService;
             _userManager = userManager;
         }
         // GET: AuditoriumController
         public ActionResult Index()
         {
-            var result = _auditoriumService.GetAllAuditoriums();
+            var result = _seatService.GetSeats();
             return View(result);
         }
 
         // GET: AuditoriumController/Details/5
         public ActionResult Details(int id)
         {
-            var result = _auditoriumService.GetAuditoriumById(id);
+            var result = _seatService.GetSeatById(id);
             return View(result);
         }
 
         // GET: AuditoriumController/Create
         public ActionResult Create()
         {
-            
+
             return View();
         }
 
         // POST: AuditoriumController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(AuditoriumCreate auditoriumCreate)
+        public ActionResult Create(SeatCreate seatCreate)
         {
             if (!ModelState.IsValid)
             {
-                return View(auditoriumCreate);
+                return View(seatCreate);
             }
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            if (_auditoriumService.CreateAuditorium(auditoriumCreate, userId))
+            if (_seatService.CreateSeat(seatCreate, userId))
             {
-                TempData["SaveResult"] = "Auditorium was created";
+                TempData["SaveResult"] = "Seat was created";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Auditorium could not be created");
-            return View(auditoriumCreate);
+            ModelState.AddModelError("", "Seat could not be created");
+            return View(seatCreate);
         }
 
         // GET: AuditoriumController/Edit/5
         public ActionResult Edit(int id)
         {
-            var detail = _auditoriumService.GetAuditoriumById(id);
-            var model = new AuditoriumEdit()
+            var detail = _seatService.GetSeatById(id);
+            var model = new SeatEdit()
             {
-                Id = id,
-                Name = detail.Name,
+                SeatId = id,
+                RowNumber = detail.RowNumber,
+                SeatNumber = detail.SeatNumber,
+                SeatType = detail.SeatType,
+                AuditoriumId = detail.AuditoriumId
             };
             return View(model);
         }
@@ -77,29 +79,29 @@ namespace MovieTheaterReservations.Web.Controllers
         // POST: AuditoriumController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, AuditoriumEdit auditoriumEdit)
+        public ActionResult Edit(int id, SeatEdit seatEdit)
         {
-            if (!ModelState.IsValid) return View(auditoriumEdit);
+            if (!ModelState.IsValid) return View(seatEdit);
 
-            if (auditoriumEdit.Id != id)
+            if (seatEdit.SeatId != id)
             {
                 ModelState.AddModelError("", "Id Mismatch");
-                return View(auditoriumEdit);
+                return View(seatEdit);
             }
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if(_auditoriumService.UpdateAuditorium(auditoriumEdit, userId))
+            if (_seatService.UpdateSeat(seatEdit, userId))
             {
-                TempData["SaveResult"] = "Auditorium was updated";
+                TempData["SaveResult"] = "Seat was updated";
                 return RedirectToAction("Index");
             }
-            ModelState.AddModelError("", "Auditorium could not be updated");
-            return View(auditoriumEdit);
+            ModelState.AddModelError("", "Seat could not be updated");
+            return View(seatEdit);
         }
 
         // GET: AuditoriumController/Delete/5
         public ActionResult Delete(int id)
         {
-            var model = _auditoriumService.GetAuditoriumById(id);
+            var model = _seatService.GetSeatById(id);
             return View(model);
         }
 
@@ -107,10 +109,10 @@ namespace MovieTheaterReservations.Web.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteAuditorium(int id)
+        public ActionResult DeleteSeat(int id)
         {
-            _auditoriumService.DeleteAuditorium(id);
-            TempData["SaveResult"] = "Auditorium was deleted";
+            _seatService.DeleteSeat(id);
+            TempData["SaveResult"] = "Seat was deleted";
             return RedirectToAction("Index");
         }
     }
