@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using MovieTheaterReservations.Web.Data;
+using MovieTheaterReservations.Data.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

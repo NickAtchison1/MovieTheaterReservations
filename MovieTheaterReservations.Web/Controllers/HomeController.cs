@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MovieTheaterReservations.Data.Models;
 using MovieTheaterReservations.Web.Models;
 using System.Diagnostics;
 
