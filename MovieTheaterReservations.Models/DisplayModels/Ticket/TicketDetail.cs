@@ -1,12 +1,7 @@
-﻿using MovieTheaterReservations.Shared.DisplayModels.Enums;
-using System;
-using System.Collections.Generic;
+﻿using MovieTheaterReservations.DisplayModels.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MovieTheaterReservations.Shared.DisplayModels.Ticket
+namespace MovieTheaterReservations.DisplayModels.Ticket
 {
     public class TicketDetail
     {

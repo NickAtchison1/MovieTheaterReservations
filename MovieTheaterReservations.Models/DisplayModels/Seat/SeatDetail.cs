@@ -1,11 +1,6 @@
-﻿using MovieTheaterReservations.Shared.DisplayModels.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MovieTheaterReservations.DisplayModels.Enums;
 
-namespace MovieTheaterReservations.Shared.DisplayModels.Seat
+namespace MovieTheaterReservations.DisplayModels.Seat
 {
     public class SeatDetail
     {
@@ -14,7 +9,7 @@ namespace MovieTheaterReservations.Shared.DisplayModels.Seat
         public int SeatNumber { get; set; }
         public SeatType SeatType { get; set; }
         public int AuditoriumId { get; set; }
-        public string AuditoriumName { get; set;} = string.Empty;
+        public string AuditoriumName { get; set; } = string.Empty;
 
     }
 }
