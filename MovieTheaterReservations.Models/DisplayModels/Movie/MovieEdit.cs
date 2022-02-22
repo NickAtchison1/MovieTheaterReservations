@@ -11,11 +11,10 @@ namespace MovieTheaterReservations.DisplayModels.Movie
         public string ImageUrl { get; set; } = string.Empty;
         public Rating Rating { get; set; }
         public int Duration { get; set; }
-        [Required]
-        public string UpdatedBy { get; set; } = string.Empty;
+     
+      
 
-        [Column(TypeName = "datetime2")]
-        public DateTime UpdatedDate { get; set; }
+      
 
 
     }

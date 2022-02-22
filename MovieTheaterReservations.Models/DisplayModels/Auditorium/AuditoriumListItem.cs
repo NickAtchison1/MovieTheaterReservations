@@ -8,7 +8,7 @@ namespace MovieTheaterReservations.DisplayModels.Auditorium
 {
     public class AuditoriumListItem
     {
-        public int AuditoriumId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
     }
 }
