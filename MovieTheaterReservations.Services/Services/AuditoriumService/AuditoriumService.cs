@@ -33,7 +33,7 @@ namespace MovieTheaterReservations.Services.Services.AuditoriumService
             var query = _context.Auditoriums
                 .Select(a => new AuditoriumListItem()
                 {
-                    AuditoriumId = a.Id,
+                    Id = a.Id,
                     Name = a.Name,
                 }).ToList();
 
@@ -43,17 +43,19 @@ namespace MovieTheaterReservations.Services.Services.AuditoriumService
         public AuditoriumDetail GetAuditoriumById(int id)
         {
             var auditoriumEntity = _context.Auditoriums.Single(a => a.Id == id);
-            var auditoriumDetail = new AuditoriumDetail()
+            var detail = new AuditoriumDetail()
             {
+                Id = auditoriumEntity.Id,
                 Name = auditoriumEntity.Name,
             };
-            return auditoriumDetail;
+            return detail;
+           
         }
 
         public bool UpdateAuditorium(AuditoriumEdit auditoriumEdit, string userId)
         {
-            var auditoriumToUpdate = _context.Auditoriums.Single(a => a.Id == auditoriumEdit.AuditoriumId);
-            auditoriumToUpdate.Id = auditoriumEdit.AuditoriumId;
+            var auditoriumToUpdate = _context.Auditoriums.Single(a => a.Id == auditoriumEdit.Id);
+            auditoriumToUpdate.Id = auditoriumEdit.Id;
             auditoriumToUpdate.Name = auditoriumEdit.Name;
             auditoriumToUpdate.CreatedBy = auditoriumToUpdate.CreatedBy;
             auditoriumToUpdate.CreatedDate = auditoriumToUpdate.CreatedDate;
