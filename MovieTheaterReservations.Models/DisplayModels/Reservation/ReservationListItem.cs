@@ -1,16 +1,11 @@
-﻿using MovieTheaterReservations.Shared.DisplayModels.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MovieTheaterReservations.DisplayModels.Enums;
 
-namespace MovieTheaterReservations.Shared.DisplayModels.Reservation
+namespace MovieTheaterReservations.DisplayModels.Reservation
 {
-    public  class ReservationListItem
+    public class ReservationListItem
     {
         public int ReservationId { get; set; }
-        public string Movie { get; set; }
+        public string Movie { get; set; } = String.Empty;
         public ReservationType ReservationType { get; set; }
         public ReservationContactType ReservationContactType { get; set; }
     }

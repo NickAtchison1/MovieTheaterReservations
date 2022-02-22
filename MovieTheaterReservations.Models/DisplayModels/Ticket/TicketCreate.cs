@@ -1,11 +1,6 @@
-﻿using MovieTheaterReservations.Shared.DisplayModels.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MovieTheaterReservations.DisplayModels.Enums;
 
-namespace MovieTheaterReservations.Shared.DisplayModels.Ticket
+namespace MovieTheaterReservations.DisplayModels.Ticket
 {
     public class TicketCreate
     {

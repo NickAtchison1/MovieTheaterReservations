@@ -1,6 +1,6 @@
-﻿using MovieTheaterReservations.Shared.DisplayModels.Enums;
+﻿using MovieTheaterReservations.DisplayModels.Enums;
 
-namespace MovieTheaterReservations.Shared.DisplayModels.Movie
+namespace MovieTheaterReservations.DisplayModels.Movie
 {
     public class MovieDetail
     {

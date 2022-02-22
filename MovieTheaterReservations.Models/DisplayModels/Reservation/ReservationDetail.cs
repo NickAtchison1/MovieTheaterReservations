@@ -1,11 +1,6 @@
-﻿using MovieTheaterReservations.Shared.DisplayModels.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MovieTheaterReservations.DisplayModels.Enums;
 
-namespace MovieTheaterReservations.Shared.DisplayModels.Reservation
+namespace MovieTheaterReservations.DisplayModels.Reservation
 {
     public class ReservationDetail
     {
@@ -14,6 +9,6 @@ namespace MovieTheaterReservations.Shared.DisplayModels.Reservation
         public string MovieTitle { get; set; } = string.Empty;
         public ReservationType ReservationType { get; set; }
         public ReservationContactType ReservationContactType { get; set; }
-      //  public ICollection<Ticket> Tickets { get; set; } = new HashSet<Ticket>();
+        //  public ICollection<Ticket> Tickets { get; set; } = new HashSet<Ticket>();
     }
 }

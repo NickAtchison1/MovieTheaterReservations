@@ -1,8 +1,8 @@
-﻿using MovieTheaterReservations.Shared.DisplayModels.Enums;
+﻿using MovieTheaterReservations.DisplayModels.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MovieTheaterReservations.Shared.DisplayModels.Movie
+namespace MovieTheaterReservations.DisplayModels.Movie
 {
     public class MovieEdit
     {
@@ -13,7 +13,7 @@ namespace MovieTheaterReservations.Shared.DisplayModels.Movie
         public int Duration { get; set; }
         [Required]
         public string UpdatedBy { get; set; } = string.Empty;
-        
+
         [Column(TypeName = "datetime2")]
         public DateTime UpdatedDate { get; set; }
 

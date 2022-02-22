@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieTheaterReservations.Shared.DisplayModels.Auditorium
+namespace MovieTheaterReservations.DisplayModels.Auditorium
 {
     public class AuditoriumListItem
     {
