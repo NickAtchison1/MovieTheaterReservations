@@ -14,8 +14,7 @@ namespace MovieTheaterReservations.DisplayModels.Ticket
         public DateTime MovieShowingDate { get; set; }
         public TimeSpan MovieShowingTime { get; set; }
         public int SeatId { get; set; }
-        public int RowNumber { get; set; }
-        public int SeatNumber { get; set; }
+        public string SeatName { get; set; } = string.Empty;
         public int ReservationId { get; set; }
         public decimal TicketPrice { get; set; }
         public TicketType TicketType { get; set; }

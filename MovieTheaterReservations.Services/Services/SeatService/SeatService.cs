@@ -17,7 +17,7 @@ namespace MovieTheaterReservations.Services.Services.SeatService
         {
             var seatEntity = new Seat()
             {
-                RowNumber = seatCreate.RowNumber,
+                Row = seatCreate.Row,
                 SeatNumber = seatCreate.SeatNumber,
                 SeatType = (MovieTheaterReservations.Data.Models.Enums.SeatType)seatCreate.SeatType,
                 AuditoriumId = seatCreate.AuditoriumId,
@@ -33,8 +33,7 @@ namespace MovieTheaterReservations.Services.Services.SeatService
                 .Select(s => new SeatListItem()
                 {
                     SeatId = s.Id,
-                    RowNumber = s.RowNumber,
-                    SeatNumber = s.SeatNumber,
+                    SeatName = s.SeatName,
                     SeatType = (MovieTheaterReservations.DisplayModels.Enums.SeatType)s.SeatType,
                     AuditoriumId = s.AuditoriumId
 
@@ -48,7 +47,7 @@ namespace MovieTheaterReservations.Services.Services.SeatService
             var seatDetail = new SeatDetail()
             {
                 SeatId = seatEntity.Id,
-                RowNumber = seatEntity.RowNumber,
+                Row = seatEntity.Row,
                 SeatNumber = seatEntity.SeatNumber,
                 SeatType = (MovieTheaterReservations.DisplayModels.Enums.SeatType)seatEntity.SeatType,
                 AuditoriumId = seatEntity.AuditoriumId,
@@ -60,7 +59,7 @@ namespace MovieTheaterReservations.Services.Services.SeatService
         public bool UpdateSeat(SeatEdit seatEdit, string userId)
         {
             var seatToUpdate = _context.Seats.Single(s => s.Id == seatEdit.SeatId);
-            seatToUpdate.RowNumber = seatEdit.RowNumber;
+            seatToUpdate.Row = seatEdit.Row;
             seatToUpdate.SeatNumber = seatEdit.SeatNumber;
             seatToUpdate.SeatType = (MovieTheaterReservations.Data.Models.Enums.SeatType)seatEdit.SeatType;
             seatToUpdate.AuditoriumId = seatEdit.AuditoriumId;

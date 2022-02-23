@@ -68,7 +68,7 @@ namespace MovieTheaterReservations.Web.Controllers
             var model = new SeatEdit()
             {
                 SeatId = id,
-                RowNumber = detail.RowNumber,
+                Row = detail.Row,
                 SeatNumber = detail.SeatNumber,
                 SeatType = detail.SeatType,
                 AuditoriumId = detail.AuditoriumId
