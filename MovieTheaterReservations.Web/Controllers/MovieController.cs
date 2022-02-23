@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MovieTheaterReservations.DisplayModels.Movie;
 using MovieTheaterReservations.Services.Services.MovieService;
@@ -6,6 +7,7 @@ using System.Security.Claims;
 
 namespace MovieTheaterReservations.Web.Controllers
 {
+    [Authorize]
     public class MovieController : Controller
     {
         private readonly IMovieService _movieService;
