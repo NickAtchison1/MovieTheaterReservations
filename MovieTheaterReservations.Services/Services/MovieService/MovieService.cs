@@ -37,6 +37,7 @@ namespace MovieTheaterReservations.Services.Services.MovieService
             var query = _context.Movies
                 .Select(m => new MovieListItem()
                 {
+                    Id = m.Id,
                     Title = m.Title,
                     ImageUrl = m.ImageUrl,
                     Rating = (MovieTheaterReservations.DisplayModels.Enums.Rating)m.Rating,
