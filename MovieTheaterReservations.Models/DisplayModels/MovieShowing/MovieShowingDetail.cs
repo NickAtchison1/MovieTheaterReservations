@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieTheaterReservations.DisplayModels.MovieShowing
+namespace MovieTheaterReservations.Models.DisplayModels.MovieShowing
 {
     public class MovieShowingDetail
     {

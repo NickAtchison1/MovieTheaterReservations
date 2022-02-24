@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieTheaterReservations.DisplayModels.Enums
+namespace MovieTheaterReservations.Models.DisplayModels.Enums
 {
     public enum SeatType
     {

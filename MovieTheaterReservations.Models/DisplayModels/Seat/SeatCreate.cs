@@ -1,4 +1,5 @@
 ﻿using MovieTheaterReservations.DisplayModels.Enums;
+using MovieTheaterReservations.Models.DisplayModels.Enums;
 
 namespace MovieTheaterReservations.DisplayModels.Seat
 {

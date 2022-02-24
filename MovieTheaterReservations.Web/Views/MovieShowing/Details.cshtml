@@ -1,13 +1,13 @@
-﻿@model MovieTheaterReservations.DisplayModels.MovieShowing.MovieShowingDetail
+﻿@model MovieTheaterReservations.Models.DisplayModels.MovieShowing.MovieShowingSeatSelection
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "MovingShowingAuditorium";
 }
 
-<h1>Details</h1>
+<h1>MovingShowingAuditorium</h1>
 
 <div>
-    <h4>MovieShowingDetail</h4>
+    <h4>MovieShowingSeatSelection</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -16,23 +16,14 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.MovieShowingId)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MovieId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MovieId)
-        </dd>
+     
+
+        
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.MovieTitle)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.MovieTitle)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageUrl)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.AuditoriumId)
@@ -60,6 +51,16 @@
         </dd>
     </dl>
 </div>
+@foreach(var seat in Model.SeatLists)
+{
+     <dt class = "col-sm-2">
+            @Html.HiddenFor(model => seat.SeatId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => seat.SeatName)
+        </dd>
+
+}
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>

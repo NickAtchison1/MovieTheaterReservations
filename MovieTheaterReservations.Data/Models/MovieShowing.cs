@@ -18,6 +18,6 @@ namespace MovieTheaterReservations.Data.Models
         public TimeSpan MovieShowingTime { get; set; }
         public Movie? Movie { get; set; }
         public Auditorium? Auditorium { get; set; }
-        public ICollection<Ticket> Tickets { get; set; } = new HashSet<Ticket>();
+      //  public ICollection<Ticket> Tickets { get; set; } = new HashSet<Ticket>();
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MovieTheaterReservations.DisplayModels.MovieShowing.MovieShowingListItem>
+﻿@model IEnumerable<MovieTheaterReservations.Models.DisplayModels.MovieShowing.MovieShowingListItem>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,6 +16,9 @@
                 @Html.DisplayNameFor(model => model.MovieShowingId)
             </th>
             <th>
+
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.MovieTitle)
             </th>
             <th>
@@ -27,6 +30,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.MovieShowingTime)
             </th>
+             <th></th>
             <th></th>
         </tr>
     </thead>
@@ -35,6 +39,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.MovieShowingId)
+            </td>
+            <td>
+                @Html.HiddenFor(modelItem => item.MovieId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MovieTitle)
@@ -48,8 +55,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.MovieShowingTime)
             </td>
+             <td>
+                @Html.HiddenFor(modelItem => item.AuditoriumId)
+            </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Select Seat", "Details", new { id = item.MovieShowingId})
+                @Html.ActionLink("Edit", "Edit", new { id=item.MovieShowingId}) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
