@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using MovieTheaterReservations.DisplayModels.MovieShowing;
+using MovieTheaterReservations.Models.DisplayModels.MovieShowing;
 using MovieTheaterReservations.Services.Services.MovieShowingService;
 using System.Security.Claims;
 
@@ -28,9 +28,17 @@ namespace MovieTheaterReservations.Web.Controllers
         }
 
         // GET: AuditoriumController/Details/5
+        //public ActionResult Details(int id)
+        //{
+        //    var result = _movieShowingService.GetMovieShowing(id);
+        //    return View(result);
+        //}
+        //[HttpGet]
+        // [ActionName("Detail")]
+        // [Route("MoveiShowing/MovingShowingAuditorium/{id:int}")]
         public ActionResult Details(int id)
         {
-            var result = _movieShowingService.GetMovieShowing(id);
+            var result = _movieShowingService.GetMovieShowingSeats(id);
             return View(result);
         }
 

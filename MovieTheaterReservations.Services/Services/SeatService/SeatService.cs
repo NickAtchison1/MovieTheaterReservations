@@ -34,7 +34,7 @@ namespace MovieTheaterReservations.Services.Services.SeatService
                 {
                     SeatId = s.Id,
                     SeatName = s.SeatName,
-                    SeatType = (MovieTheaterReservations.DisplayModels.Enums.SeatType)s.SeatType,
+                    SeatType = (MovieTheaterReservations.Models.DisplayModels.Enums.SeatType)s.SeatType,
                     AuditoriumId = s.AuditoriumId
 
                 }).ToList();
@@ -49,7 +49,7 @@ namespace MovieTheaterReservations.Services.Services.SeatService
                 SeatId = seatEntity.Id,
                 Row = seatEntity.Row,
                 SeatNumber = seatEntity.SeatNumber,
-                SeatType = (MovieTheaterReservations.DisplayModels.Enums.SeatType)seatEntity.SeatType,
+                SeatType = (MovieTheaterReservations.Models.DisplayModels.Enums.SeatType)seatEntity.SeatType,
                 AuditoriumId = seatEntity.AuditoriumId,
                 AuditoriumName = seatEntity.Auditorium.Name
             };
