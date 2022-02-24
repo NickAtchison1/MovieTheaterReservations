@@ -12,8 +12,8 @@ using MovieTheaterReservations.Data.Data;
 namespace MovieTheaterReservations.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220223184338_ChangeColumnTypesOnSeat")]
-    partial class ChangeColumnTypesOnSeat
+    [Migration("20220224151814_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -349,6 +349,10 @@ namespace MovieTheaterReservations.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("ContactInformation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -357,6 +361,9 @@ namespace MovieTheaterReservations.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("MovieShowingId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberOfTickets")
                         .HasColumnType("int");
 
                     b.Property<int>("ReservationContactType")
@@ -572,7 +579,7 @@ namespace MovieTheaterReservations.Data.Migrations
             modelBuilder.Entity("MovieTheaterReservations.Data.Models.Ticket", b =>
                 {
                     b.HasOne("MovieTheaterReservations.Data.Models.MovieShowing", "MovieShowing")
-                        .WithMany()
+                        .WithMany("Tickets")
                         .HasForeignKey("MovieShowingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -606,6 +613,11 @@ namespace MovieTheaterReservations.Data.Migrations
             modelBuilder.Entity("MovieTheaterReservations.Data.Models.Movie", b =>
                 {
                     b.Navigation("MovieShowing");
+                });
+
+            modelBuilder.Entity("MovieTheaterReservations.Data.Models.MovieShowing", b =>
+                {
+                    b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("MovieTheaterReservations.Data.Models.Reservation", b =>

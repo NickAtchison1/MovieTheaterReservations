@@ -19,5 +19,6 @@ namespace MovieTheaterReservations.Data.Models
         public MovieShowing? MovieShowing { get; set; }
         public Seat? Seat { get; set; }
         public Reservation? Reservation { get; set; }
+        
     }
 }
