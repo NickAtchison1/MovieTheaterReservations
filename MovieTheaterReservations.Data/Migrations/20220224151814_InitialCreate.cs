@@ -197,8 +197,9 @@ namespace MovieTheaterReservations.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RowNumber = table.Column<int>(type: "int", nullable: false),
+                    Row = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: false),
                     SeatNumber = table.Column<int>(type: "int", nullable: false),
+                    SeatName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SeatType = table.Column<int>(type: "int", nullable: false),
                     AuditoriumId = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -258,6 +259,8 @@ namespace MovieTheaterReservations.Data.Migrations
                     MovieShowingId = table.Column<int>(type: "int", nullable: false),
                     ReservationType = table.Column<int>(type: "int", nullable: false),
                     ReservationContactType = table.Column<int>(type: "int", nullable: false),
+                    ContactInformation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NumberOfTickets = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
