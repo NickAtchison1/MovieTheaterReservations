@@ -1,4 +1,5 @@
 ﻿using MovieTheaterReservations.DisplayModels.Enums;
+using MovieTheaterReservations.Models.DisplayModels.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieTheaterReservations.DisplayModels.Ticket
@@ -15,7 +16,7 @@ namespace MovieTheaterReservations.DisplayModels.Ticket
         public TimeSpan MovieShowingTime { get; set; }
         public int SeatId { get; set; }
         public string SeatName { get; set; } = string.Empty;
-        public int ReservationId { get; set; }
+      //  public int ReservationId { get; set; }
         public decimal TicketPrice { get; set; }
         public TicketType TicketType { get; set; }
         public ShowingType ShowingType { get; set; }

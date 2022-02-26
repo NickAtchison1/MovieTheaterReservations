@@ -75,12 +75,18 @@ namespace MovieTheaterReservations.Services.Services.MovieShowingService
             //                          select new {MovieShowingDetail = m, seats = query.ToList()}).Single();
             var movieshowingEntity = _context.MoviesShowings.Include(m => m.Movie).Include(a => a.Auditorium).SingleOrDefault(s => s.Id == id);
             var seats = _context.Seats.Where(s => s.AuditoriumId == movieshowingEntity.AuditoriumId).ToList();
+          // var seats = seatsList.GroupBy(item => item.SeatName.Substring(0, 1))
+            //    .SelectMany(grouping => grouping.OrderBy(item => item.Id).ToList());
+                
+
+
             //   var tickets = _context.Tickets.Where(t => t.MovieShowingId == movieshowingEntity.Id).ToList();
             var movieShowingSeatDetail = new MovieShowingSeatSelection()
             {
                 MovieShowingId = movieshowingEntity.Id,
                 MovieId = movieshowingEntity.Movie.Id,
                 MovieTitle = movieshowingEntity.Movie.Title,
+                ImageUrl= movieshowingEntity.Movie.ImageUrl,
                 AuditoriumId = movieshowingEntity.Auditorium.Id,
                 Auditorium = movieshowingEntity.Auditorium.Name,
                 MovieShowingDate = movieshowingEntity.MovieShowingDate,
@@ -92,7 +98,7 @@ namespace MovieTheaterReservations.Services.Services.MovieShowingService
                     SeatType = (MovieTheaterReservations.Models.DisplayModels.Enums.SeatType)s.SeatType,
                     AuditoriumId = s.AuditoriumId
 
-                }).ToList(),
+                }).OrderBy(x => x.SeatType).ToList()
               
 
                 //TicketsList = (List<TicketListItem>)tickets.Select(t => new TicketListItem()

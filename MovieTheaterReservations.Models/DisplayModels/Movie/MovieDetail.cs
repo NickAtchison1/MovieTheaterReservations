@@ -1,4 +1,5 @@
-﻿using MovieTheaterReservations.DisplayModels.Enums;
+﻿using MovieTheaterReservations.Models.DisplayModels.Enums;
+using MovieTheaterReservations.Models.DisplayModels.MovieShowing;
 
 namespace MovieTheaterReservations.DisplayModels.Movie
 {
@@ -9,6 +10,7 @@ namespace MovieTheaterReservations.DisplayModels.Movie
         public string ImageUrl { get; set; } = string.Empty;
         public Rating Rating { get; set; }
         public int Duration { get; set; }
+        public IEnumerable<MovieShowingTimes>? ShowTimes { get; set; }
 
 
     }

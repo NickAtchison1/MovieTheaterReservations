@@ -1,4 +1,5 @@
 ﻿using MovieTheaterReservations.DisplayModels.Movie;
+using MovieTheaterReservations.Models.DisplayModels.Movie;
 
 namespace MovieTheaterReservations.Services.Services.MovieService
 {
@@ -7,7 +8,7 @@ namespace MovieTheaterReservations.Services.Services.MovieService
         bool CreateMovie(MovieCreate movieCreate, string userId);
         bool DeleteMovieById(int id);
         IEnumerable<MovieListItem> GetAllMovies();
-        MovieDetail GetMovieById(int id);
+        MovieDetail GetMovieTodayById(int id);
         bool UpdateMovie(MovieEdit movieEdit, string userId);
     }
 }

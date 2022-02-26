@@ -70,7 +70,7 @@ namespace MovieTheaterReservations.Web.Controllers
                 TicketId = id,
                 MovieShowingId = detail.MovieShowingId,
                 SeatId = detail.SeatId,
-                ReservationId = detail.ReservationId,
+               
                 TicketPrice = detail.TicketPrice,
                 TicketType = detail.TicketType,
                 ShowingType = detail.ShowingType
