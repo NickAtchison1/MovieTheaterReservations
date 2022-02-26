@@ -11,7 +11,7 @@ namespace MovieTheaterReservations.Models.DisplayModels.MovieShowing
         //public int SeatsSelected { get; set; }
           public int MovieId { get; set; }
         public string MovieTitle { get; set; } = string.Empty;
-
+        public string ImageUrl {  get; set; } = string.Empty;
         public int AuditoriumId { get; set; }
         public string Auditorium { get; set; } = String.Empty;
         [Column(TypeName = "date")]

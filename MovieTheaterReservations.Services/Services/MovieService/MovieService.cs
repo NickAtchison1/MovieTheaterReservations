@@ -1,6 +1,9 @@
-﻿using MovieTheaterReservations.Data.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MovieTheaterReservations.Data.Data;
 using MovieTheaterReservations.Data.Models;
 using MovieTheaterReservations.DisplayModels.Movie;
+using MovieTheaterReservations.Models.DisplayModels.Movie;
+using MovieTheaterReservations.Models.DisplayModels.MovieShowing;
 
 namespace MovieTheaterReservations.Services.Services.MovieService
 {
@@ -40,21 +43,28 @@ namespace MovieTheaterReservations.Services.Services.MovieService
                     Id = m.Id,
                     Title = m.Title,
                     ImageUrl = m.ImageUrl,
-                    Rating = (MovieTheaterReservations.DisplayModels.Enums.Rating)m.Rating,
+                    Rating = (MovieTheaterReservations.Models.DisplayModels.Enums.Rating)m.Rating,
                 }).ToList();
             return query;
         }
 
-        public MovieDetail GetMovieById(int id)
+        public MovieDetail GetMovieTodayById(int id)
         {
-            var movieEntity = _context.Movies.Single(m => m.Id == id);
+            var movieEntity = _context.Movies.Include(ms => ms.MovieShowing).Single(m => m.Id == id);
             var movieDetail = new MovieDetail()
             {
                 MovieId = movieEntity.Id,
                 Title = movieEntity.Title,
                 ImageUrl = movieEntity.ImageUrl,
-                Rating = (MovieTheaterReservations.DisplayModels.Enums.Rating)movieEntity.Rating,
-                Duration = movieEntity.Duration
+                Rating = (MovieTheaterReservations.Models.DisplayModels.Enums.Rating)movieEntity.Rating,
+                Duration = movieEntity.Duration,
+                ShowTimes = (List<MovieShowingTimes>)movieEntity.MovieShowing.Where(m => m.MovieShowingDate == DateTime.Today).Select(m => new MovieShowingTimes()
+                {
+                    MovieShowingId = m.Id,
+                    MovieId = m.MovieId,
+                    MovieShowingDate = m.MovieShowingDate,
+                    MovieShowingTime = m.MovieShowingTime
+                }).ToList(),
             };
             return movieDetail;
         }

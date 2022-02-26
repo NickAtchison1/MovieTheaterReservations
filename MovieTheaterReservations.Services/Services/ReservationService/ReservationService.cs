@@ -15,11 +15,15 @@ namespace MovieTheaterReservations.Services.Services.ReservationService
 
         public bool CreateReservation(ReservationCreate reservationCreate, string userId)
         {
+            var seats = _context.Seats.Where(s => s.AuditoriumId == reservationCreate.AuditoriumId);
+            
             var reservationEntity = new Reservation()
             {
                 MovieShowingId = reservationCreate.MovieShowingId,
                 ReservationType = (MovieTheaterReservations.Data.Models.Enums.ReservationType)reservationCreate.ReservationType,
                 ReservationContactType = (MovieTheaterReservations.Data.Models.Enums.ReservationContactType)reservationCreate.ReservationContactType,
+                
+               // NumberOfTickets = reservationCreate.Numb
                 CreatedBy = userId,
                 CreatedDate = DateTime.Now,
                 UpdatedBy = userId,

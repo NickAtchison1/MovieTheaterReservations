@@ -12,13 +12,13 @@ namespace MovieTheaterReservations.Data.Models
         public int Id { get; set; }
         public int MovieShowingId { get; set; }
         public int SeatId { get; set; }
-        public int ReservationId { get; set; }
+    //    public int ReservationId { get; set; }
         public decimal TicketPrice { get; set; }
         public TicketType TicketType { get; set; }
         public ShowingType ShowingType { get; set; }
         public MovieShowing? MovieShowing { get; set; }
         public Seat? Seat { get; set; }
-        public Reservation? Reservation { get; set; }
+      //  public Reservation? Reservation { get; set; }
         
     }
 }

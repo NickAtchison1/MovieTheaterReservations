@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieTheaterReservations.Data.Data;
 
@@ -11,9 +12,10 @@ using MovieTheaterReservations.Data.Data;
 namespace MovieTheaterReservations.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220225162733_AddSeatsToReservation")]
+    partial class AddSeatsToReservation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -454,7 +456,7 @@ namespace MovieTheaterReservations.Data.Migrations
                     b.Property<int>("MovieShowingId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ReservationId")
+                    b.Property<int>("ReservationId")
                         .HasColumnType("int");
 
                     b.Property<int>("SeatId")
@@ -591,9 +593,11 @@ namespace MovieTheaterReservations.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MovieTheaterReservations.Data.Models.Reservation", null)
+                    b.HasOne("MovieTheaterReservations.Data.Models.Reservation", "Reservation")
                         .WithMany("Tickets")
-                        .HasForeignKey("ReservationId");
+                        .HasForeignKey("ReservationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("MovieTheaterReservations.Data.Models.Seat", "Seat")
                         .WithMany()
@@ -602,6 +606,8 @@ namespace MovieTheaterReservations.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("MovieShowing");
+
+                    b.Navigation("Reservation");
 
                     b.Navigation("Seat");
                 });

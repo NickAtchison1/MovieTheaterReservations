@@ -4,64 +4,67 @@
     ViewData["Title"] = "MovingShowingAuditorium";
 }
 
-<h1>MovingShowingAuditorium</h1>
-
-<div>
-    <h4>MovieShowingSeatSelection</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MovieShowingId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MovieShowingId)
-        </dd>
-     
-
+<div class="media-body">
+  
+   
         
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MovieTitle)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MovieTitle)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AuditoriumId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AuditoriumId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Auditorium)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Auditorium)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MovieShowingDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MovieShowingDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MovieShowingTime)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MovieShowingTime)
-        </dd>
-    </dl>
-</div>
-@foreach(var seat in Model.SeatLists)
-{
-     <dt class = "col-sm-2">
-            @Html.HiddenFor(model => seat.SeatId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => seat.SeatName)
-        </dd>
+        <div class="media-img-wrapper mr-2">
+             <img class="media-img" src="@Html.DisplayFor(model => model.ImageUrl)" alt="@Html.DisplayFor(model => model.MovieTitle)" />
+        </div>
+       
+            @Html.HiddenFor(model => model.MovieShowingId)
+            
+            <h2> @Html.DisplayFor(model => model.MovieTitle)</h2>
+           
+            <h2> @Html.DisplayFor(model => model.MovieShowingDate)</h2>
+           
+            <h2> @Html.DisplayFor(model => model.MovieShowingTime)</h2>
+            @Html.HiddenFor(model => model.AuditoriumId)
+            <h2> @Html.DisplayFor(model => model.Auditorium)</h2>
+        
+           
+      
+              
+        
 
-}
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+
+     
+ 
+
+    
+      <div>
+  <div>
+ <div class="seating-separator"></div>
+  <div class ="auditorium">
+     
+      </div>
+   @foreach(var seat in Model.SeatLists)
+   { 
+   
+        <ul class="tile" >
+   
+         
+           
+      
+          
+               <li class="seat"> @Html.HiddenFor(model => seat.SeatId)@Html.DisplayFor(model => seat.SeatName)</li>
+           
+               </ul>
+              
+            
+  
+      
+
+    }         
+       
+ </div>      
+  
+
+
+
+
     <a asp-action="Index">Back to List</a>
 </div>
+   
+    
+

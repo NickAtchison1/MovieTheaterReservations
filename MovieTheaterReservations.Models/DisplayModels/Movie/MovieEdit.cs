@@ -1,4 +1,5 @@
 ﻿using MovieTheaterReservations.DisplayModels.Enums;
+using MovieTheaterReservations.Models.DisplayModels.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

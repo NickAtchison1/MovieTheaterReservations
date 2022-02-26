@@ -1,8 +1,8 @@
 ﻿
 
-using MovieTheaterReservations.DisplayModels.Enums;
+using MovieTheaterReservations.Models.DisplayModels.Enums;
 
-namespace MovieTheaterReservations.DisplayModels.Movie
+namespace MovieTheaterReservations.Models.DisplayModels.Movie
 {
     public class MovieCreate
     {

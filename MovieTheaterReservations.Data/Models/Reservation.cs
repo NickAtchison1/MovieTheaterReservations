@@ -29,6 +29,8 @@ namespace MovieTheaterReservations.Data.Models
                 _numberOfTickets = value;
             }
         }
+
+        public ICollection<Seat> Seats { get; set; } = new HashSet<Seat>();
         public ICollection<Ticket> Tickets { get; set; } = new HashSet<Ticket>();
         
 

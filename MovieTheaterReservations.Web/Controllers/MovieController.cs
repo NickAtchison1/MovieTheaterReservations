@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MovieTheaterReservations.DisplayModels.Movie;
+using MovieTheaterReservations.Models.DisplayModels.Movie;
 using MovieTheaterReservations.Services.Services.MovieService;
 using System.Security.Claims;
 
@@ -28,7 +29,7 @@ namespace MovieTheaterReservations.Web.Controllers
         // GET: AuditoriumController/Details/5
         public ActionResult Details(int id)
         {
-            var result = _movieService.GetMovieById(id);
+            var result = _movieService.GetMovieTodayById(id);
             return View(result);
         }
 
@@ -64,7 +65,7 @@ namespace MovieTheaterReservations.Web.Controllers
         // GET: AuditoriumController/Edit/5
         public ActionResult Edit(int id)
         {
-            var detail = _movieService.GetMovieById(id);
+            var detail = _movieService.GetMovieTodayById(id);
             var model = new MovieEdit()
             {
                 MovieId = id,
@@ -101,7 +102,7 @@ namespace MovieTheaterReservations.Web.Controllers
         // GET: AuditoriumController/Delete/5
         public ActionResult Delete(int id)
         {
-            var model = _movieService.GetMovieById(id);
+            var model = _movieService.GetMovieTodayById(id);
             return View(model);
         }
 

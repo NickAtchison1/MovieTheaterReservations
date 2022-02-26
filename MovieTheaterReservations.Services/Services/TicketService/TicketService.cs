@@ -15,11 +15,15 @@ namespace MovieTheaterReservations.Services.Services.TicketService
 
         public bool CreateTicket(TicketCreate ticketCreate, string userId)
         {
-            var ticketEntity = new Ticket()
+            var movieShowings = _context.MoviesShowings;
+            var ticketEntity = new List<Ticket>
+
             {
-                MovieShowingId = ticketCreate.MovieShowingId,
-                SeatId = ticketCreate.SeatId,
-                ReservationId = ticketCreate.ReservationId,
+                new Ticket
+                {
+                 MovieShowingId = movieShowings.Single(ms => ms.Id == ticketCreate.MovieShowingId).Id,
+                 SeatId = ticketCreate.SeatId,
+
                 TicketPrice = ticketCreate.TicketPrice,
                 TicketType = (MovieTheaterReservations.Data.Models.Enums.TicketType)ticketCreate.TicketType,
                 ShowingType = (MovieTheaterReservations.Data.Models.Enums.ShowingType)ticketCreate.ShowingType,
@@ -27,8 +31,12 @@ namespace MovieTheaterReservations.Services.Services.TicketService
                 CreatedDate = DateTime.Now,
                 UpdatedBy = userId,
                 UpdatedDate = DateTime.Now,
+                }
+
+
+
             };
-            _context.Tickets.Add(ticketEntity);
+            _context.Tickets.AddRange(ticketEntity);
             return _context.SaveChanges() > 0;
         }
 
@@ -40,7 +48,7 @@ namespace MovieTheaterReservations.Services.Services.TicketService
                     TicktId = t.Id,
                     MovieShowingId = t.MovieShowingId,
                     SeatId = t.SeatId,
-                    ReservationId = t.ReservationId,
+                   
                 }).ToList();
             return query;
         }
@@ -53,13 +61,13 @@ namespace MovieTheaterReservations.Services.Services.TicketService
                 TicketId = ticketEntity.Id,
                 MovieShowingId = ticketEntity.MovieShowingId,
                 MovieTitle = ticketEntity.MovieShowing.Movie.Title,
-                Rating = (MovieTheaterReservations.DisplayModels.Enums.Rating)ticketEntity.MovieShowing.Movie.Rating,
+                Rating = (MovieTheaterReservations.Models.DisplayModels.Enums.Rating)ticketEntity.MovieShowing.Movie.Rating,
                 AuditoriumName = ticketEntity.MovieShowing.Auditorium.Name,
                 MovieShowingDate = ticketEntity.MovieShowing.MovieShowingDate,
                 MovieShowingTime = ticketEntity.MovieShowing.MovieShowingTime,
                 SeatId = ticketEntity.SeatId,
                 SeatName = ticketEntity.Seat.SeatName,
-                ReservationId = ticketEntity.ReservationId,
+                
                 TicketPrice = ticketEntity.TicketPrice,
                 TicketType = (MovieTheaterReservations.DisplayModels.Enums.TicketType)ticketEntity.TicketType,
                 ShowingType = (MovieTheaterReservations.DisplayModels.Enums.ShowingType)ticketEntity.ShowingType
@@ -74,7 +82,7 @@ namespace MovieTheaterReservations.Services.Services.TicketService
 
             ticketToUpdate.MovieShowingId = ticketEdit.MovieShowingId;
             ticketToUpdate.SeatId = ticketEdit.SeatId;
-            ticketToUpdate.ReservationId = ticketEdit.ReservationId;
+           
             ticketToUpdate.TicketPrice = ticketEdit.TicketPrice;
             ticketToUpdate.TicketType = (MovieTheaterReservations.Data.Models.Enums.TicketType)ticketEdit.TicketType;
             ticketToUpdate.ShowingType = (MovieTheaterReservations.Data.Models.Enums.ShowingType)ticketEdit.ShowingType;
