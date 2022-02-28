@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "MovingShowingAuditorium";
 }
+
 <div class="container-fluid">
     <button class="btn btn-primary" onclick="location.href='@Url.ActionLink("Index","Movie")'" >Back To Movies</button>
      
@@ -61,10 +62,19 @@
       
 
     }  
+    <div id="seat_Selected">
+        <span></span>
     </div>
+     @*<button class="btn btn-primary" onclick="location.href='@Url.ActionLink("Create","Ticket", "MovieShowing")'">Purchase Ticket</button>*@
+     <button class="btn btn-primary" onclick="location.href='@Url.ActionLink("Create","Ticket")'">Purchase Ticket</button>
+     @*<button class="btn btn-info" data-id= onclick="location.href='@Url.ActionLink("Create","Ticket")'" >Purchase Ticket Modal</button>*@
+     @*<button class="btn btn-sm btn-dark details" data-id="model.MovieShowingId" data-toggle="modal" data-target="#details-modal">Details</button> *@
+    </div>
+
+
 @section scripts 
 {
-   <script type="text/javascript">
+   @*<script type="text/javascript">
             
 $('.seat').each(function(index){
     let firstChar = $(this).text().trim().charAt(0);
@@ -76,7 +86,19 @@ $('.seat').each(function(index){
     }
 });
 
+</script>*@
+
+ <script type="text/javascript">
+            
+$('.seat').click(function(){
+    var getValue = $(this).siblings(":hidden").val();
+    $(this).css('color', 'blue')
+    $('#seat_Selected span').val(getValue);
+});
+
 </script>
+
+
 
 }
   

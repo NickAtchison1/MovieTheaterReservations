@@ -6,6 +6,11 @@ form, label, h1, h2, h3, h4, p {
     color: white
         /*!important;*/
 }
+
+form-group, label, h1, h2, h3, h4, p {
+    color: white
+    /*!important;*/
+}
 table, thead, tbody, th, tr,td {
     color: white;
 }
