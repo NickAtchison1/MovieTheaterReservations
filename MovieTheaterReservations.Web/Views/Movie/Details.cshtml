@@ -3,41 +3,44 @@
 @{
     ViewData["Title"] = "Details";
 }
-
-
-
-<div class="media">
-  
+<div class="container-fluid">
+    <button class="btn btn-primary btn-lg active" onclick="location.href='@Url.ActionLink("Index","Movie")'">Back To Movies</button>
    
+    <div class="d-flex justify-content-center">
         
-        <div class="media-img-wrapper mr-2">
-             <img class="media-img" src="@Html.DisplayFor(model => model.ImageUrl)" alt="@Html.DisplayFor(model => model.Title)" />
-        </div>
-        <div class="media-body">
-            
-            <h2> @Html.DisplayFor(model => model.Title)</h2>
-           
-            <h2> @Html.DisplayFor(model => model.Rating)</h2>
-           
-            <h2> @Html.DisplayFor(model => model.Duration) Minutes</h2>
-         </div>
-           
+<div class="card" style="width: 20em;">
+  <img class="img-fluid" src="@Html.DisplayFor(model => model.ImageUrl)" alt="@Html.DisplayFor(model => model.Title)">
+  <div class="card-body">
+      <div class="col text-center">
+            @Html.HiddenFor(model => model.MovieId)
+       <h3> @Html.DisplayFor(model => model.Title)</h3>
       
-              
-        
-</div>
+           
+            <h3> @Html.DisplayFor(model => model.Rating)</h3>
+           
+            <h3> @Html.DisplayFor(model => model.Duration) Minutes</h3>
+         
 @foreach(var movie in Model.ShowTimes)
-{
-     <dt class = "col-sm-2">
-            @Html.HiddenFor(model => movie.MovieShowingId)
-        </dt>
-        <dd>
+        {
+            
+              @Html.HiddenFor(model => movie.MovieShowingId)
+        
         <input type="button" class= "btn-primary" value="@Html.DisplayFor(model => movie.MovieShowingTime)" onclick="location.href='@Url.ActionLink("Details", "MovieShowing", new { id = movie.MovieShowingId})'"/>
-         @*@Html.ActionLink("@Html.DisplayFor(model => movie.MovieShowingTime)", "Details", "MovieShowing", new { id = movie.MovieShowingId})*@
-        </dd>
+         
+         
+        }
+    
+    </div>    
+    </div>
+    </div>
+    </div>
+    </div>
+       
 
-}
-<div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MovieId }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
+
+
+      
+
+

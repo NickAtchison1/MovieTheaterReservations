@@ -3,16 +3,21 @@
 @{
     ViewData["Title"] = "MovingShowingAuditorium";
 }
-
-<div class="media-body">
+<div class="container-fluid">
+    <button class="btn btn-primary" onclick="location.href='@Url.ActionLink("Index","Movie")'" >Back To Movies</button>
+     
+    <div class="-flex justify-content-sm-start">
+<div class="card" style="width: 500px;">
+   <div class="row no-gutters">
+            <div class="col-sm-5">
+  <img class="img-fluid" src="@Html.DisplayFor(model => model.ImageUrl)" alt="@Html.DisplayFor(model => model.MovieTitle)">
   
-   
-        
-        <div class="media-img-wrapper mr-2">
-             <img class="media-img" src="@Html.DisplayFor(model => model.ImageUrl)" alt="@Html.DisplayFor(model => model.MovieTitle)" />
-        </div>
+          
+    </div> 
+  <div class="col-sm-7">
+  <div class="card-body">
        
-            @Html.HiddenFor(model => model.MovieShowingId)
+       @Html.HiddenFor(model => model.MovieShowingId)
             
             <h2> @Html.DisplayFor(model => model.MovieTitle)</h2>
            
@@ -21,19 +26,19 @@
             <h2> @Html.DisplayFor(model => model.MovieShowingTime)</h2>
             @Html.HiddenFor(model => model.AuditoriumId)
             <h2> @Html.DisplayFor(model => model.Auditorium)</h2>
+         
+
+           
+    </div>    
+    </div>    
+    </div>
+    </div>
         
            
+    </div>        
       
-              
-        
+      
 
-
-     
- 
-
-    
-      <div>
-  <div>
  <div class="seating-separator"></div>
   <div class ="auditorium">
      
@@ -55,16 +60,28 @@
   
       
 
-    }         
-       
- </div>      
+    }  
+    </div>
+@section scripts 
+{
+   <script type="text/javascript">
+            
+$('.seat').each(function(index){
+    let firstChar = $(this).text().trim().charAt(0);
+    if(firstChar == 'A' || firstChar == 'C'){
+        $(this).css('color', 'yellow')
+    }
+    else {
+        $(this).css('color', 'white')
+    }
+});
+
+</script>
+
+}
+  
   
 
-
-
-
-    <a asp-action="Index">Back to List</a>
-</div>
    
     
 
