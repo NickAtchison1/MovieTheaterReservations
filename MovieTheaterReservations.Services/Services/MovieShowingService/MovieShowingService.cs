@@ -89,7 +89,7 @@ namespace MovieTheaterReservations.Services.Services.MovieShowingService
                 ImageUrl= movieshowingEntity.Movie.ImageUrl,
                 AuditoriumId = movieshowingEntity.Auditorium.Id,
                 Auditorium = movieshowingEntity.Auditorium.Name,
-                MovieShowingDate = movieshowingEntity.MovieShowingDate,
+                MovieShowingDate = movieshowingEntity.MovieShowingDate.Date,
                 MovieShowingTime = movieshowingEntity.MovieShowingTime,
                 SeatLists = (List<SeatListItem>)seats.Select(s => new SeatListItem()
                 {
