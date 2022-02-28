@@ -13,6 +13,8 @@ namespace MovieTheaterReservations.Models.DisplayModels.MovieShowing
         public string MovieTitle { get; set; } = string.Empty;
         public string ImageUrl {  get; set; } = string.Empty;
         public int AuditoriumId { get; set; }
+
+        public int SeatId { get; set; }
         public string Auditorium { get; set; } = String.Empty;
         [Column(TypeName = "date")]
         public DateTime MovieShowingDate { get; set; }

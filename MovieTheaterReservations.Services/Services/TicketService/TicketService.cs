@@ -1,6 +1,8 @@
-﻿using MovieTheaterReservations.Data.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MovieTheaterReservations.Data.Data;
 using MovieTheaterReservations.Data.Models;
 using MovieTheaterReservations.DisplayModels.Ticket;
+using MovieTheaterReservations.Models.DisplayModels.MovieShowing;
 
 namespace MovieTheaterReservations.Services.Services.TicketService
 {
@@ -15,14 +17,19 @@ namespace MovieTheaterReservations.Services.Services.TicketService
 
         public bool CreateTicket(TicketCreate ticketCreate, string userId)
         {
-            var movieShowings = _context.MoviesShowings;
+            //var movieshowingEntity = _context.MoviesShowings.Include(m => m.Movie).Include(a => a.Auditorium).SingleOrDefault(s => s.Id == id);
+          //  var seats = _context.Seats.Where(s => s.AuditoriumId == movieshowingEntity.AuditoriumId).ToList();
+            var movieShowings = _context.MoviesShowings.Include(m => m.Movie).Include(a => a.Auditorium).ThenInclude(s => s.Seat).ToList();
             var ticketEntity = new List<Ticket>
 
             {
                 new Ticket
                 {
                  MovieShowingId = movieShowings.Single(ms => ms.Id == ticketCreate.MovieShowingId).Id,
-                 SeatId = ticketCreate.SeatId,
+                 //movieShowings.Single(ms => ms.Id == ticketCreate.MovieShowingId).Id,
+                 
+                 SeatId =movieShowings.Single(ms => ms.Id == ticketCreate.SeatId).Id,
+                 //movieShowings.Single(ms => ms.Id == ticketCreate.SeatId).Id,
 
                 TicketPrice = ticketCreate.TicketPrice,
                 TicketType = (MovieTheaterReservations.Data.Models.Enums.TicketType)ticketCreate.TicketType,

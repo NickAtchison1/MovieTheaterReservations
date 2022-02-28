@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MovieTheaterReservations.Models.DisplayModels.MovieShowing;
 using MovieTheaterReservations.Services.Services.MovieShowingService;
+using Newtonsoft.Json;
 using System.Security.Claims;
 
 namespace MovieTheaterReservations.Web.Controllers
@@ -39,6 +40,8 @@ namespace MovieTheaterReservations.Web.Controllers
         public ActionResult Details(int id)
         {
             var result = _movieShowingService.GetMovieShowingSeats(id);
+            TempData["MovieShowing"] = JsonConvert.SerializeObject(result);
+            TempData.Keep();
             return View(result);
         }
 

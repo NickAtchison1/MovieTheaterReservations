@@ -2,7 +2,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MovieTheaterReservations.DisplayModels.Ticket;
+using MovieTheaterReservations.Models.DisplayModels.MovieShowing;
 using MovieTheaterReservations.Services.Services.TicketService;
+using MovieTheaterReservations.Web.Helpers;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace MovieTheaterReservations.Web.Controllers
@@ -34,8 +38,13 @@ namespace MovieTheaterReservations.Web.Controllers
 
         // GET: AuditoriumController/Create
         public ActionResult Create()
-        {
-
+        {  
+            ViewData["MovieShowing"] = JsonConvert.DeserializeObject<MovieShowingSeatSelection>((string)TempData["MovieShowing"]);
+           // ViewData["MovieShowing"] = JsonConvert.DeserializeObject<List<dynamic>>((string)TempData["MovieShowing"]); 
+          //  var show = ViewData["MovieShowing"].ToString();
+           // var show1 = show.Substring(show.IndexOf('"')+ 1, show.Length);
+            //((string)TempData["MovieShowing"]);
+            // ViewBag.result = TempData["MovieShowing"];
             return View();
         }
 
@@ -50,7 +59,13 @@ namespace MovieTheaterReservations.Web.Controllers
             }
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
+            ViewData["MovieShowing"] = ticketCreate.MovieShowingId;
+            //  ViewData["MovieShowing"] = JsonConvert.DeserializeObject<List<dynamic>>((string)TempData["MovieShowing"]);
+            // var show = ViewData["MovieShowing"].ToString();
+            //var show1 = show[0].MovieShowingId;
+            //  TempData["MovieShowingId"] = movieShowingId;
+            //   TempDataHelper.Put<MovieShowingSeatSelection>(TempData, "moveishowing", movieSho);
+           // ticketCreate.MovieShowingId = show1;
             if (_ticketService.CreateTicket(ticketCreate, userId))
             {
                 TempData["SaveResult"] = "Ticket was created";
