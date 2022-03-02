@@ -12,7 +12,7 @@ namespace MovieTheaterReservations.Data.Data
         }
 
         public DbSet<Movie> Movies { get; set; }
-        public DbSet<Reservation> Reservations { get; set; }
+     
         public DbSet<Auditorium> Auditoriums { get; set; }
         public DbSet<MovieShowing> MoviesShowings { get; set; }
         public DbSet<Seat> Seats { get; set; }
