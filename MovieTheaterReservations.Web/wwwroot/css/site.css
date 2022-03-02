@@ -2,6 +2,25 @@ html {
   font-size: 14px;
  
 }
+.home-screen {
+    font-family: arial;
+    font-size: 24px;
+    margin: 25px;
+    width: 1200px;
+    height: 500px;
+    
+    background-color: white;
+}
+
+.home-screen h1 {
+    text-align: center;
+    color: black;
+}
+
+.home-screen h3 {
+    text-align: center;
+    color: red;
+}
 form, label, h1, h2, h3, h4, p {
     color: white
         /*!important;*/

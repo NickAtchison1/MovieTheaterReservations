@@ -39,6 +39,7 @@ namespace MovieTheaterReservations.Web.Controllers
         // [Route("MoveiShowing/MovingShowingAuditorium/{id:int}")]
         public ActionResult Details(int id)
         {
+
             var result = _movieShowingService.GetMovieShowingSeats(id);
             TempData["MovieShowing"] = JsonConvert.SerializeObject(result);
             TempData.Keep();
