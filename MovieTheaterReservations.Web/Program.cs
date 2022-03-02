@@ -4,7 +4,6 @@ using MovieTheaterReservations.Data.Data;
 using MovieTheaterReservations.Services.Services.AuditoriumService;
 using MovieTheaterReservations.Services.Services.MovieService;
 using MovieTheaterReservations.Services.Services.MovieShowingService;
-using MovieTheaterReservations.Services.Services.ReservationService;
 using MovieTheaterReservations.Services.Services.SeatService;
 using MovieTheaterReservations.Services.Services.TicketService;
 
@@ -22,7 +21,6 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IAuditoriumService, AuditoriumService>();
 builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddScoped<IMovieShowingService, MovieShowingService>();
-builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<ISeatService, SeatService>();
 builder.Services.AddScoped<ITicketService, TicketService>();
 
@@ -32,7 +30,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
-    
+
 }
 else
 {
