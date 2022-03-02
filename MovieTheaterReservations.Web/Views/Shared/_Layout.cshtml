@@ -25,16 +25,16 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                          <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Movie" asp-action="Index">Movies</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="MovieShowing" asp-action="Index">Showings</a>
+                        </li>
+                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Auditorium" asp-action="Index">Auditoriums</a>
                         </li>
                          <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Seat" asp-action="Index">Seats</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Movie" asp-action="Index">Movies</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="MovieShowing" asp-action="Index">Movie Auditoriums</a>
                         </li>
 
                         }
