@@ -1,0 +1,49 @@
+﻿@model MovieTheaterReservations.Models.DisplayModels.MovieShowing.MovieShowingCreate
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MovieShowingCreate</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MovieId" class="control-label"></label>
+                <input asp-for="MovieId" class="form-control" />
+                <span asp-validation-for="MovieId" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="AuditoriumId" class="control-label"></label>
+                <input asp-for="AuditoriumId" class="form-control" />
+                <span asp-validation-for="AuditoriumId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MovieShowingDate" class="control-label"></label>
+                <input asp-for="MovieShowingDate" class="form-control" />
+                <span asp-validation-for="MovieShowingDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MovieShowingTime" class="control-label"></label>
+                <input asp-for="MovieShowingTime" class="form-control" />
+                <span asp-validation-for="MovieShowingTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

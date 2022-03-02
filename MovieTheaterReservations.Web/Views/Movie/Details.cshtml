@@ -1,0 +1,46 @@
+﻿@model MovieTheaterReservations.DisplayModels.Movie.MovieDetail
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="container-fluid">
+    <button class="btn btn-primary btn-lg active" onclick="location.href='@Url.ActionLink("Index","Movie")'">Back To Movies</button>
+   
+    <div class="d-flex justify-content-center">
+        
+<div class="card" style="width: 20em;">
+  <img class="img-fluid" src="@Html.DisplayFor(model => model.ImageUrl)" alt="@Html.DisplayFor(model => model.Title)">
+  <div class="card-body">
+      <div class="col text-center">
+            @Html.HiddenFor(model => model.MovieId)
+       <h3> @Html.DisplayFor(model => model.Title)</h3>
+      
+           
+            <h3> @Html.DisplayFor(model => model.Rating)</h3>
+           
+            <h3> @Html.DisplayFor(model => model.Duration) Minutes</h3>
+         
+@foreach(var movie in Model.ShowTimes)
+        {
+            
+              @Html.HiddenFor(model => movie.MovieShowingId)
+        
+        <input type="button" class= "btn-primary" value="@Html.DisplayFor(model => movie.MovieShowingTime)" onclick="location.href='@Url.ActionLink("Details", "MovieShowing", new { id = movie.MovieShowingId})'"/>
+         
+         
+        }
+    
+    </div>    
+    </div>
+    </div>
+    </div>
+    </div>
+       
+
+
+
+
+
+      
+
+

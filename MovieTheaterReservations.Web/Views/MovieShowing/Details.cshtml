@@ -1,0 +1,123 @@
+﻿@model MovieTheaterReservations.Models.DisplayModels.MovieShowing.MovieShowingSeatSelection
+
+@{
+    ViewData["Title"] = "MovingShowingAuditorium";
+}
+
+<div class="container-fluid">
+    <button class="btn btn-primary" onclick="location.href='@Url.ActionLink("Index","Movie")'">Back To Movies</button>
+
+    <div class="-flex justify-content-sm-start">
+        <div class="card" style="width: 500px;">
+            <div class="row no-gutters">
+                <div class="col-sm-5">
+                    <img class="img-fluid" src="@Html.DisplayFor(model => model.ImageUrl)" alt="@Html.DisplayFor(model => model.MovieTitle)">
+
+
+                </div>
+                <div class="col-sm-7">
+                    <div class="card-body">
+
+                        @Html.HiddenFor(model => model.MovieShowingId)
+
+                        <h2> @Html.DisplayFor(model => model.MovieTitle)</h2>
+
+                        <h2> @Html.DisplayFor(model => model.MovieShowingDate)</h2>
+
+                        <h2> @Html.DisplayFor(model => model.MovieShowingTime)</h2>
+                        @Html.HiddenFor(model => model.AuditoriumId)
+                        <h2> @Html.DisplayFor(model => model.Auditorium)</h2>
+
+                         @Html.HiddenFor(model => model.SeatId, new { id = "SeatId" })
+                       
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <div class="seating-separator"></div>
+    <div class="auditorium">
+    </div>
+    @foreach (var seat in Model.SeatLists)
+    {
+
+        <ul class="tile">
+
+
+
+
+
+            <li class="seat"> @Html.HiddenFor(model => seat.SeatId)@Html.DisplayFor(model => seat.SeatName)</li>
+
+        </ul>
+
+
+
+
+
+    }
+    <div id="seat_Selected">
+      <span></span>
+      <span></span>
+       
+    </div>
+    @*<button class="btn btn-primary" id="toTicket">Purchase Ticket</button>*@
+    <button class="btn btn-primary" onclick="location.href='@Url.ActionLink("Create","Ticket")'">Purchase Ticket</button>
+    @*<button class="btn btn-info" data-id= onclick="location.href='@Url.ActionLink("Create","Ticket")'" >Purchase Ticket Modal</button>*@
+    @*<button class="btn btn-sm btn-dark details" data-id="model.MovieShowingId" data-toggle="modal" data-target="#details-modal">Details</button> *@
+</div>
+
+
+@section scripts
+{
+  
+
+<script>
+
+    $('.seat').click(function(e) {
+      var getHidden = $(e.target).find('input:hidden').val()
+      //alert(getHidden);
+      var getValue = $(this).text();
+      $(this).css('color', 'blue')
+      $("#SeatId").val(getHidden);
+      //var textValue =  $('#seat_Selected span').first().text(getHidden);
+      //$('#seat_Selected span').last().text(getValue);
+    });
+
+   // $('#toTicket').click(function () {
+   // var seatId = $('#seat_Selected span').first().
+   //// var selectedId = $('#hdnSelectedId').val();
+
+   // $.ajax({
+   //     url: '/Ticket/Create',
+   //     data: { 'id' : seatId },
+   //     type: "get",
+   //     cache: false,
+        //success: function (savingStatus) {
+        //    $("#hdnOrigComments").val($('#txtComments').val());
+        //    $('#lblCommentsNotification').text(savingStatus);
+        //},
+        //error: function (xhr, ajaxOptions, thrownError) {
+        //    $('#lblCommentsNotification').text("Error encountered while saving the comments.");
+        //}
+    });
+});
+
+</script>
+
+
+
+}
+
+
+
+
+
+

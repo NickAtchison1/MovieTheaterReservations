@@ -1,0 +1,85 @@
+﻿@using MovieTheaterReservations.DisplayModels.Enums
+@using MovieTheaterReservations.Models.DisplayModels.MovieShowing
+@using MovieTheaterReservations.Web.Helpers
+@model MovieTheaterReservations.DisplayModels.Ticket.TicketCreate
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>TicketCreate</h4>
+@*@if (TempData.ContainsKey("MovieShowing"))
+{
+    <div class="alert alert-success fade in" role="alert">
+        @ViewBag.SaveResult
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["MovieShowing"]
+
+    </div>
+    }*@
+@*@{
+    var show1 = @TempData["MovieShowing"].ToString();
+    var show = show.Substring()
+}*@
+@{
+    var showing = ViewData["MovieShowing"] as MovieShowingSeatSelection;
+    //@model.MovieShowingId = showing.MovieShowingId;
+    Model.MovieShowingId = showing.MovieShowingId;
+    Model.SeatId = showing.SeatId;
+
+}  
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MovieShowingId" class="control-label"></label>
+                <input asp-for= "MovieShowingId" class="form-control" />
+                <span asp-validation-for="MovieShowingId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SeatId" class="control-label"></label>
+                <input asp-for="SeatId" class="form-control" />
+                <span asp-validation-for="SeatId" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="TicketPrice" class="control-label"></label>
+                <input asp-for="TicketPrice" class="form-control" />
+                <span asp-validation-for="TicketPrice" class="text-danger"></span>
+            </div>
+           <div class="form-group">
+                <label asp-for="TicketType" class="control-label"></label>
+                <select asp-for="TicketType" class="form-control"
+                  asp-items="Html.GetEnumSelectList<TicketType>()">
+                    <option>Select Ticket Type...</option>
+                </select>
+                <span asp-validation-for="TicketType" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="ShowingType" class="control-label"></label>
+                <select asp-for="ShowingType" class="form-control"
+                  asp-items="Html.GetEnumSelectList<ShowingType>()">
+                    <option>Select Showing Type...</option>
+                </select>
+                <span asp-validation-for="ShowingType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

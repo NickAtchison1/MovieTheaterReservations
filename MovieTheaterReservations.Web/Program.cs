@@ -1,6 +1,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using MovieTheaterReservations.Web.Data;
+using MovieTheaterReservations.Data.Data;
+using MovieTheaterReservations.Services.Services.AuditoriumService;
+using MovieTheaterReservations.Services.Services.MovieService;
+using MovieTheaterReservations.Services.Services.MovieShowingService;
+using MovieTheaterReservations.Services.Services.SeatService;
+using MovieTheaterReservations.Services.Services.TicketService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +18,11 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IAuditoriumService, AuditoriumService>();
+builder.Services.AddScoped<IMovieService, MovieService>();
+builder.Services.AddScoped<IMovieShowingService, MovieShowingService>();
+builder.Services.AddScoped<ISeatService, SeatService>();
+builder.Services.AddScoped<ITicketService, TicketService>();
 
 var app = builder.Build();
 
@@ -20,6 +30,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
+
 }
 else
 {

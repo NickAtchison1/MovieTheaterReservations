@@ -1,0 +1,65 @@
+﻿@model IEnumerable<MovieTheaterReservations.DisplayModels.Movie.MovieListItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="d-flex justify-content-center">
+<h1>Movies</h1>
+</div>
+<p>
+   <button class="btn btn-primary btn-lg active" onclick="location.href='@Url.ActionLink("Create","Movie")'" >Create</button>
+</p>
+
+
+
+
+    <div class="row"> 
+        @foreach (var item in Model) {
+       <div class="col col-lg-4"> 
+           <div class="card-deck">
+    <div class="card h-100" style="width: 25rem;">
+  <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.ImageUrl)" alt="@Html.DisplayFor(modelItem => item.Title)" />
+  <div class="card-body">
+       
+           @Html.HiddenFor(modelItem => item.Id)
+             @Html.HiddenFor(modelItem => item.Title)
+             @Html.HiddenFor(modelItem => item.Rating)
+            <div class="col text-center">
+             <input type="button" class= "btn btn-primary" value="Edit" onclick="location.href='@Url.ActionLink("Edit", "Movie", new { id = item.Id})'"/>
+                 <input type="button"class= "btn btn-info"  value="Today's ShowTimes" onclick="location.href='@Url.ActionLink("Details", "Movie", new { id = item.Id})'"/>
+                 <input type="button" class= "btn btn-danger" value="Delete" onclick="location.href='@Url.ActionLink("Delete", "Movie", new { id = item.Id})'"/>
+   </div>
+      </div>
+   </div>
+  </div>
+   </div>
+
+   }
+</div>
+     @*   <li class="media my-3">>
+            <div class="media-img-wrapper mr-2">
+            <img class="media-img" src="@Html.DisplayFor(modelItem => item.ImageUrl)" alt="@Html.DisplayFor(modelItem => item.Title)" />
+             @Html.HiddenFor(modelItem => item.Id)
+             @Html.HiddenFor(modelItem => item.Title)
+             @Html.HiddenFor(modelItem => item.Rating)
+             
+             <div class="media-body">
+                 <input type="button" class= "btn-primary" value="Edit" onclick="location.href='@Url.ActionLink("Edit", "Movie", new { id = item.Id})'"/>
+                 <input type="button"class= "btn-primary"  value="Today's ShowTimes" onclick="location.href='@Url.ActionLink("Details", "Movie", new { id = item.Id})'"/>
+                 <input type="button" class= "btn-primary" value="Delete" onclick="location.href='@Url.ActionLink("Delete", "Movie", new { id = item.Id})'"/>
+             </div>
+             </div>
+        </li> *@
+               
+     
+                
+               
+@*   </ul>     *@   
+                
+           
+               @* @Html.ActionLink("Edit", "Edit", new {  id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+        
+
+
