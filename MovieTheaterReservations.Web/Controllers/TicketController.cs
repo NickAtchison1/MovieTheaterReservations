@@ -40,32 +40,24 @@ namespace MovieTheaterReservations.Web.Controllers
         public ActionResult Create()
         {  
             ViewData["MovieShowing"] = JsonConvert.DeserializeObject<MovieShowingSeatSelection>((string)TempData["MovieShowing"]);
-           // ViewData["MovieShowing"] = JsonConvert.DeserializeObject<List<dynamic>>((string)TempData["MovieShowing"]); 
-          //  var show = ViewData["MovieShowing"].ToString();
-           // var show1 = show.Substring(show.IndexOf('"')+ 1, show.Length);
-            //((string)TempData["MovieShowing"]);
-            // ViewBag.result = TempData["MovieShowing"];
-            return View();
+           // ViewData["MovieShowing"] = JsonConvert.DeserializeObject<MovieShowingSeatSelection>((string)TempData["MovieShowing"]);
+           
+            return View(new TicketCreate());
         }
 
         // POST: AuditoriumController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(TicketCreate ticketCreate)
+        public ActionResult Create(TicketCreate ticketCreate, int movieShowingId)
         {
             if (!ModelState.IsValid)
             {
                 return View(ticketCreate);
             }
-
+           // int movieShowingId;
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            ViewData["MovieShowing"] = ticketCreate.MovieShowingId;
-            //  ViewData["MovieShowing"] = JsonConvert.DeserializeObject<List<dynamic>>((string)TempData["MovieShowing"]);
-            // var show = ViewData["MovieShowing"].ToString();
-            //var show1 = show[0].MovieShowingId;
-            //  TempData["MovieShowingId"] = movieShowingId;
-            //   TempDataHelper.Put<MovieShowingSeatSelection>(TempData, "moveishowing", movieSho);
-           // ticketCreate.MovieShowingId = show1;
+
+           // ViewData["MovieShowing"] = JsonConvert.DeserializeObject<MovieShowingSeatSelection>((string)TempData["MovieShowing"]);
             if (_ticketService.CreateTicket(ticketCreate, userId))
             {
                 TempData["SaveResult"] = "Ticket was created";

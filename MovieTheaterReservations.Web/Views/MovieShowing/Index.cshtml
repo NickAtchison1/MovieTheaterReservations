@@ -21,9 +21,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.MovieTitle)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.MovieShowingDate)
             </th>
@@ -46,9 +44,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.MovieTitle)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.MovieShowingDate)
             </td>
@@ -59,10 +55,10 @@
                 @Html.HiddenFor(modelItem => item.AuditoriumId)
             </td>
             <td>
-                @Html.ActionLink("Select Seat", "Details", new { id = item.MovieShowingId})
+               
                 @Html.ActionLink("Edit", "Edit", new { id=item.MovieShowingId}) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Details", "Details", new { id=item.MovieShowingId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.MovieShowingId })
             </td>
         </tr>
 }

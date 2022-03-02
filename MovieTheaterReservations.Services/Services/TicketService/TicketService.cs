@@ -20,15 +20,16 @@ namespace MovieTheaterReservations.Services.Services.TicketService
             //var movieshowingEntity = _context.MoviesShowings.Include(m => m.Movie).Include(a => a.Auditorium).SingleOrDefault(s => s.Id == id);
           //  var seats = _context.Seats.Where(s => s.AuditoriumId == movieshowingEntity.AuditoriumId).ToList();
             var movieShowings = _context.MoviesShowings.Include(m => m.Movie).Include(a => a.Auditorium).ThenInclude(s => s.Seat).ToList();
-            var ticketEntity = new List<Ticket>
+            var ticketEntity = new Ticket()
 
             {
-                new Ticket
-                {
-                 MovieShowingId = movieShowings.Single(ms => ms.Id == ticketCreate.MovieShowingId).Id,
+               
+                 MovieShowingId = ticketCreate.MovieShowingId,
+                 //movieShowings.Single(ms => ms.Id == ticketCreate.MovieShowingId).Id,
                  //movieShowings.Single(ms => ms.Id == ticketCreate.MovieShowingId).Id,
                  
-                 SeatId =movieShowings.Single(ms => ms.Id == ticketCreate.SeatId).Id,
+                 SeatId = ticketCreate.SeatId,
+                 //=movieShowings.Single(ms => ms.Id == ticketCreate.SeatId).Id,
                  //movieShowings.Single(ms => ms.Id == ticketCreate.SeatId).Id,
 
                 TicketPrice = ticketCreate.TicketPrice,
@@ -38,12 +39,12 @@ namespace MovieTheaterReservations.Services.Services.TicketService
                 CreatedDate = DateTime.Now,
                 UpdatedBy = userId,
                 UpdatedDate = DateTime.Now,
-                }
-
+                
+               
 
 
             };
-            _context.Tickets.AddRange(ticketEntity);
+            _context.Tickets.Add(ticketEntity);
             return _context.SaveChanges() > 0;
         }
 
