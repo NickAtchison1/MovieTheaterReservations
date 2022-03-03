@@ -6,13 +6,30 @@ using MovieTheaterReservations.Services.Services.MovieService;
 using MovieTheaterReservations.Services.Services.MovieShowingService;
 using MovieTheaterReservations.Services.Services.SeatService;
 using MovieTheaterReservations.Services.Services.TicketService;
+using Azure.Identity;
+using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//var keyVaultEndpoint = new Uri(Environment.GetEnvironmentVariable("ConnectionString"));
+//builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
+
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+
+
+var conStrBuilder = new SqlConnectionStringBuilder(
+        builder.Configuration.GetConnectionString("ConnectionString"));
+conStrBuilder.Password = builder.Configuration["DbPassword"];
+var connection = conStrBuilder.ConnectionString;
+
+
+
+
+//var connectionString = Environment.GetEnvironmentVariable("ConnectionString");
+////var connectionString = builder.Configuration.GetConnectionString("ConnectionString");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(connection));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -38,7 +55,7 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+app.MapGet("/", () => connection);
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

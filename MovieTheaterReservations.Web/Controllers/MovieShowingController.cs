@@ -29,14 +29,7 @@ namespace MovieTheaterReservations.Web.Controllers
         }
 
         // GET: AuditoriumController/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    var result = _movieShowingService.GetMovieShowing(id);
-        //    return View(result);
-        //}
-        //[HttpGet]
-        // [ActionName("Detail")]
-        // [Route("MoveiShowing/MovingShowingAuditorium/{id:int}")]
+      
         public ActionResult Details(int id)
         {
 

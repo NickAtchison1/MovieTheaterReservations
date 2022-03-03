@@ -23,7 +23,6 @@ namespace MovieTheaterReservations.Services.Services.MovieService
                 Title = movieCreate.Title,
                 ImageUrl = movieCreate.ImageUrl,
                 Rating = (MovieTheaterReservations.Data.Models.Enums.Rating)movieCreate.Rating,
-                //(Data.Models.Enums.Rating)(Shared.DisplayModels.Enums.Rating)movieCreate.Rating,
                 Duration = movieCreate.Duration,
                 CreatedBy = userId,
                 CreatedDate = DateTime.Now,
